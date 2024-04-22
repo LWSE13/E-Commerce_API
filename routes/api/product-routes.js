@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
         },
 
         //reference the tag model
-        //through the ProductTag model which acts as a joining table
+        //through the ProductTag model which acts as a joining table as it contains the tag_id foreign key
         // and from that table we want the tag_name
         {
           model: Tag,
@@ -129,8 +129,29 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+router.delete('/:id', async (req, res) => {
+  try {
+    const productData = await Product.findOne({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    if (!productData) {
+      res.status(404).json({ message: "No product found with this id!" });
+      return;
+    }
+
+    await Product.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    res.status(200).json(`Record deleted successfully! `);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
