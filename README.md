@@ -1,7 +1,7 @@
 # E-Commerce_API
 
 ## Description
-I created this application to gain experience on Model View Controllers. During this project I gained experience mostly in defining api route requests and using sequelize to make the process easier with it's built in functions. I also gained valuable experience in building models
+I created this application to gain experience on Object relational models. During this project I gained experience mostly in defining api route requests and using sequelize to make the process easier with it's built in functions. I also gained valuable experience in building models
 
 ## Installation
 You can clone my repo by using the green code button at the top of this page. 
