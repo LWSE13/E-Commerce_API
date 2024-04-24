@@ -5,7 +5,7 @@ I created this application to gain experience on Model View Controllers. During 
 
 ## Installation
 You can clone my repo by using the green code button at the top of this page. 
-Alternatively, you can watch my walkthrough for a short video on the functionality of my app here: 
+Alternatively, you can watch my walkthrough for a short video on the functionality of my app here: https://www.youtube.com/watch?v=WmnUssQx2XI
 
 ## Usage
 Once you have the command line open use npm i to install the neccesary node modules and create your .env file. From there type the command "npm run start" and the server will start to listen. From there use postgres to test the CRUD requests
