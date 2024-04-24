@@ -31,16 +31,51 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
-  // create a new category
+router.post('/', async (req, res) => {
+  try {
+    const CategoryData = await Category.create({
+      category_name: req.body.category_name
+    });
+    res.status(200).json({ message: 'Data successfully written', CategoryData, });
+  }catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+router.put('/:id', async (req, res) => {
+  try {
+    const CategoryData = await Category.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    });
+    if (!CategoryData[0]) {
+      res.status(404).json({ message: 'No tag found with this id!' });
+      return;
+    }
+    res.status(200).json({ message: 'Data successfully updated', CategoryData, });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
+router.delete('/:id', async (req, res) => {
+  try {
+    const CategoryData = await Category.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    if (!CategoryData) {
+      res.status(404).json({ message: 'No tag found with this id!' });
+      return;
+    }
+
+    res.status(200).json({ message: 'Data successfully deleted', CategoryData, });
+  } catch (err) {
+    res.status(500).json({message: 'the data could not be deleted', error: err,});
+  }
 });
 
 module.exports = router;
